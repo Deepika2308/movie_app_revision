@@ -1,0 +1,62 @@
+.App {
+    font-family: sans-serif;
+    /* text-align: center; */
+  }
+
+.movie-poster{
+    height: 35ex;
+    width: 23ex;
+    object-fit: cover;
+}
+
+.movie-container{
+    width: 23ex;
+}
+
+.movie-details{
+    display: flex;
+    justify-content: space-between;
+}
+
+.movie-section{
+    padding-top: 5ex;
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 5ex;
+    justify-content:space-around;
+}
+
+.movie-name{
+    text-align: center;
+    margin-bottom: 1.5ex;
+    color:rgb(26, 25, 25);
+}
+
+.release-year,.movie-rating{
+    margin-top: 1ex;
+    margin-bottom:0;
+}
+
+.movie-summary{
+    font-size: small;
+    background: rgb(247, 247, 247);
+}
+
+.like-button{
+    margin-top: 2.5ex;
+    display: flex;
+    gap: 5px;
+    border-color: black;
+}
+
+.Addmovie-form{
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    padding: 9px;
+    width: 500px;
+}
+
+.summary-switch{
+    padding-top: 2ex;
+}
