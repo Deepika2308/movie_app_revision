@@ -12,7 +12,6 @@ import {useHistory} from "react-router-dom";
 
 
 export function DisplayMovie({name,poster,alt_name,year,rating,summary,id,deleteButton,editButton}){
-    // conditional styling
   
     let styles = {color: rating>7 ? "green" : "red"};
     let [checked,setChecked] = useState(false);
