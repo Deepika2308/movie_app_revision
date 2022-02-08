@@ -3,14 +3,26 @@
     /* text-align: center; */
   }
 
+  .home-content{
+      text-align: center;
+  }
+
 .movie-poster{
     height: 35ex;
-    width: 23ex;
+    width: 26ex;
     object-fit: cover;
 }
 
 .movie-container{
-    width: 23ex;
+    width: 26ex; 
+    margin-top: 2ex;
+}
+
+.movie-section{
+    padding-top: 5ex;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
 }
 
 .movie-details{
@@ -18,35 +30,33 @@
     justify-content: space-between;
 }
 
-.movie-section{
-    padding-top: 5ex;
-    display: flex;
-    flex-wrap: wrap;
-    padding-bottom: 5ex;
-    justify-content:space-around;
-}
-
 .movie-name{
     text-align: center;
-    margin-bottom: 1.5ex;
-    color:rgb(26, 25, 25);
+    color:rgb(44, 44, 44);
+    margin-top: 4px;
+    margin-bottom: 0;
+    padding-bottom: 2ex;
+    padding-top: 2ex;
+    text-align: center;
+}
+
+.MovieName-div{
+    background:rgb(240, 240, 240);
+    margin: 0;
 }
 
 .release-year,.movie-rating{
-    margin-top: 1ex;
-    margin-bottom:0;
+    margin: 0;
 }
 
 .movie-summary{
     font-size: small;
-    background: rgb(247, 247, 247);
 }
 
 .like-button{
-    margin-top: 2.5ex;
+    margin-top: 1ex;
     display: flex;
-    gap: 5px;
-    border-color: black;
+    gap: 0;
 }
 
 .Addmovie-form{
@@ -59,4 +69,30 @@
 
 .summary-switch{
     padding-top: 2ex;
+}
+
+.pageNotFound{
+    padding-left: 39ex;
+    padding-top: 8ex;
+    background:rgb(238, 238, 238);
+}
+
+.pageNotFound > h2{
+    padding-left: 16ex;
+}
+
+.movie-details-container{
+    display: flex;
+    flex-direction: column;
+    padding: 2ex;
+}
+
+.counter-delete-edit{
+    display: flex;
+    flex-direction: row;
+}
+
+.del-edit{
+    display: flex;
+    flex-direction: row;
 }
