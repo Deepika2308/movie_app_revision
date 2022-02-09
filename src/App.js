@@ -2,7 +2,7 @@ import {useState} from "react";
 import "./style.css";
 import Button from '@mui/material/Button';
 import {DisplayMovie} from "./DisplayMovie.js";
-import {Link,Switch,Route,Redirect,useHistory} from "react-router-dom";
+import {Link,Switch,Route,Redirect,useHistory,useParams} from "react-router-dom";
 import { ColorBox } from "./ColorBox";
 import { MovieDetails } from "./MovieDetails";
 import IconButton from '@mui/material/IconButton';
@@ -98,10 +98,13 @@ export default function App() {
         <Route exact path="/movies/add">
           <AddMovie initial_mlist={initial_mlist} mlist={movielist} setMovielist={setMovielist}/>
         </Route>
-        <Route path="/movies">
+        <Route path="/movies/edit/:idx">
+          <EditMovie mlist={movielist} setMovielist={setMovielist}/>
+        </Route>
+        <Route exact path="/movies">
         <div> 
           <section className="movie-section">
-            {movielist.map(({name,poster,alt_name,year,rating,summary},index) => 
+            {movielist.map(({name,poster,alt_name,year,rating,summary,trailer},index) => 
             <DisplayMovie key={index} 
             name={name} poster={poster} 
             alt_name={alt_name} year={year} 
@@ -113,11 +116,11 @@ export default function App() {
               { let deleteId=index;
                 return deleteId !== idx})
               setMovielist(remainingMovies)}
-              }><DeleteIcon fontSize="small"/></IconButton>}
+              }><DeleteIcon color="error" fontSize="small"/></IconButton>}
 
             editButton ={
               <IconButton aria-label="edit movie">
-              <EditIcon fontSize="small" onClick={() => history.push("/movies/edit/"+index)} />
+              <EditIcon color="primary" fontSize="small" onClick={() => history.push("/movies/edit/"+index)} />
               </IconButton>}
             /> )}
           </section>
@@ -158,13 +161,15 @@ function PageNotFound(){
   );
 }
 
-function AddMovie(initial_mlist, mlist, setMovielist) {
+function AddMovie({mlist, setMovielist}) {
   let [name, setName] = useState();
   let [poster, setPoster] = useState();
   let [year, setYear] = useState();
   let [rating, setRating] = useState();
   let [summary, setSummary] = useState();
   let [alt_name, setAltname] = useState();
+  let [trailer,setTrailer] = useState();
+  let history = useHistory();
 
   return (
     <div className="Addmovie-form">
@@ -174,12 +179,59 @@ function AddMovie(initial_mlist, mlist, setMovielist) {
       <TextField id="outlined-basic" label="Rating" variant="outlined" onChange={(event) => setRating(event.target.value)} />
       <TextField id="outlined-basic" label="Summary" variant="outlined" onChange={(event) => setSummary(event.target.value)} />
       <TextField id="outlined-basic" label="Alt Name" variant="outlined" onChange={(event) => setAltname(event.target.value)} />
+      <TextField id="outlined-basic" label="Trailer link" variant="outlined" onChange={(event) => setTrailer(event.target.value)} />
 
-      <Button variant="outlined" onClick={() => setMovielist([{
+      <Button variant="outlined" 
+      onClick={() => {setMovielist([{
         poster: poster,
-        alt_name: alt_name, year: year, name: name, rating: rating, summary: summary
-      }, ...mlist]
-      )}>Add</Button>
+        alt_name: alt_name, year: year, name: name, rating: rating, summary: summary, trailer:trailer
+      }, ...mlist]);
+      history.push("/movies")}}>Add</Button>
     </div>
+  );
+}
+
+function EditMovie({mlist, setMovielist}){
+
+  let {idx}= useParams(); 
+  let history = useHistory();
+
+  let editCurrentMovie = mlist[idx];
+  console.log(editCurrentMovie.name);
+  
+  let[poster,setPoster] = useState(editCurrentMovie.poster);
+  let[alt_name,setAltname] = useState(editCurrentMovie.alt_name);
+  let[year,setYear] = useState(editCurrentMovie.year);
+  let[name,setName] = useState(editCurrentMovie.name);
+  let[rating,setRating] =useState(editCurrentMovie.rating);
+  let[summary,setSummary] =useState(editCurrentMovie.summary);
+  let[trailer,setTrailer] =useState(editCurrentMovie.trailer);
+  
+  return(
+    <div className="Editmovie-form">
+      <TextField id="outlined-basic" value={name} label="Name" variant="outlined" onChange={(event) => setName(event.target.value)} />
+      <TextField id="outlined-basic" value={poster} label="Poster Url" variant="outlined" onChange={(event) => setPoster(event.target.value)} />
+      <TextField id="outlined-basic" value={year} label="Year" variant="outlined" onChange={(event) => setYear(event.target.value)} />
+      <TextField id="outlined-basic" value={rating} label="Rating" variant="outlined" onChange={(event) => setRating(event.target.value)} />
+      <TextField id="outlined-basic" value={summary} label="Summary" variant="outlined" onChange={(event) => setSummary(event.target.value)} />
+      <TextField id="outlined-basic" value={alt_name} label="Alt Name" variant="outlined" onChange={(event) => setAltname(event.target.value)} />
+      <TextField id="outlined-basic" value={trailer} label="Trailer link" variant="outlined" onChange={(event) => setTrailer(event.target.value)} />
+
+      <Button variant="outlined" 
+       onClick={() => {
+         let updatedMovie ={
+          poster: poster,
+          alt_name: alt_name, 
+          year: year, 
+          name: name, 
+          rating: rating, 
+          summary: summary, 
+          trailer:trailer
+         };
+         let copyOfMovieLists = [...mlist];
+         copyOfMovieLists[idx] = updatedMovie;
+       setMovielist(copyOfMovieLists);
+      history.push("/movies")}}>Update</Button>
+  </div>
   );
 }

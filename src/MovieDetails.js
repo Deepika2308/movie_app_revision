@@ -1,14 +1,21 @@
-import { useParams } from "react-router-dom";
+import { useParams,useHistory } from "react-router-dom";
+import Icon from '@mui/material/IconButton';
+import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
 
 export function MovieDetails({ mlist }) {
   let { id } = useParams();
   let currentMovie = mlist[id];
-  
+  let history = useHistory();
 
   let name = currentMovie.name, summary = currentMovie.summary, trailer = currentMovie.trailer;
 
   return (
     <div className="movie-details-container">
+      <div className="back-button">
+      <Icon color="primary" aria-label="Go back to movie lists">
+               <ArrowBackIosNewRoundedIcon fontSize="large" onClick={() => history.goBack()}/>
+      </Icon>
+      </div>
       <iframe width="100%" height="550px" src={trailer} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       <div className="movie-details-specs">
         <h2>{name}</h2>
