@@ -181,12 +181,17 @@ function AddMovie({mlist, setMovielist}) {
       <TextField id="outlined-basic" label="Alt Name" variant="outlined" onChange={(event) => setAltname(event.target.value)} />
       <TextField id="outlined-basic" label="Trailer link" variant="outlined" onChange={(event) => setTrailer(event.target.value)} />
 
+    <div className="editmovie-cancel-button">
       <Button variant="outlined" 
       onClick={() => {setMovielist([{
         poster: poster,
         alt_name: alt_name, year: year, name: name, rating: rating, summary: summary, trailer:trailer
       }, ...mlist]);
-      history.push("/movies")}}>Add</Button>
+      history.push("/movies")}}>Add Movie</Button>
+
+     <Button variant="outlined" 
+       onClick={() => {history.push("/movies")}}>Cancel</Button>
+    </div>  
     </div>
   );
 }
@@ -216,7 +221,7 @@ function EditMovie({mlist, setMovielist}){
       <TextField id="outlined-basic" value={summary} label="Summary" variant="outlined" onChange={(event) => setSummary(event.target.value)} />
       <TextField id="outlined-basic" value={alt_name} label="Alt Name" variant="outlined" onChange={(event) => setAltname(event.target.value)} />
       <TextField id="outlined-basic" value={trailer} label="Trailer link" variant="outlined" onChange={(event) => setTrailer(event.target.value)} />
-
+     <div className="EditForm-cancel-button">
       <Button variant="outlined" 
        onClick={() => {
          let updatedMovie ={
@@ -232,6 +237,10 @@ function EditMovie({mlist, setMovielist}){
          copyOfMovieLists[idx] = updatedMovie;
        setMovielist(copyOfMovieLists);
       history.push("/movies")}}>Update</Button>
+
+      <Button variant="outlined" 
+       onClick={() => {history.push("/movies")}}>Cancel</Button>
+     </div>  
   </div>
   );
 }

@@ -114,3 +114,13 @@
     padding-top: 2ex;
     width: 500px;
 }
+
+.EditForm-cancel-button{
+    display:flex;
+    justify-content: space-evenly;
+}
+
+.editmovie-cancel-button{
+    display:flex;
+    justify-content: space-evenly;
+}
