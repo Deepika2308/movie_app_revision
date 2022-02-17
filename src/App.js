@@ -2,13 +2,23 @@ import {useState} from "react";
 import "./style.css";
 import Button from '@mui/material/Button';
 import {DisplayMovie} from "./DisplayMovie.js";
-import {Link,Switch,Route,Redirect,useHistory,useParams} from "react-router-dom";
+import {Switch,Route,Redirect,useHistory,useParams} from "react-router-dom";
+import { createTheme,ThemeProvider } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
 import { ColorBox } from "./ColorBox";
 import { MovieDetails } from "./MovieDetails";
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import TextField from '@mui/material/TextField';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import MenuIcon from '@mui/icons-material/Menu';
+import { borderRadius } from "@mui/system";
+
 
 export default function App() {
  
@@ -78,16 +88,35 @@ export default function App() {
   ];
 
   let[movielist,setMovielist] = useState(initial_mlist);
+  let [mode,setMode] = useState("light");
   let history = useHistory();
-  return (
-    <div className="App"> 
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/color-game">Color game</Link></li>
-        <li><Link to="/movies">Movies List</Link></li>
-        <li><Link to="/movies/add">Add new Movie</Link></li>
-      </ul>
 
+  const modeTheme = createTheme({
+   palette: {
+    mode: mode,
+   },
+  });
+
+  return (
+    <ThemeProvider theme={modeTheme}>
+      <Paper sx={{borderRadius:"0px", minHeight: "100vh"}} elevation={5}>
+     <div className="App">
+      <AppBar position="static">
+        <Toolbar>
+         <div className="appbar-menus">
+         <Button color="inherit" onClick={() => history.push("/")}>Home</Button>
+          <Button color="inherit" onClick={() => history.push("/color-game")}>Color game</Button>
+          <Button color="inherit" onClick={() => history.push("/movies")}>Movies list</Button>
+          <Button color="inherit" onClick={() => history.push("/movies/add")}>Add new movie</Button>
+         </div> 
+         <div className="switch-mode-icon">
+         <IconButton aria-label="Details icon" >
+              {modeTheme.palette.mode === "dark" ? <Brightness7Icon onClick={() => setMode("light")} /> : <Brightness4Icon onClick={() => setMode("dark")} />}
+         </IconButton>
+         </div>
+        </Toolbar>
+      </AppBar> 
+      
       <Switch>
         <Route path="/color-game">
           <ColorBox />
@@ -136,8 +165,11 @@ export default function App() {
           <PageNotFound />
         </Route>
       </Switch>  
-    </div>
-  );
+       </div>
+      </Paper> 
+    </ThemeProvider>
+    
+ );
 }
 
 export function Counter(){

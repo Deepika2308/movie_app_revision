@@ -5,6 +5,7 @@
 
   .home-content{
       text-align: center;
+      padding-top: 3ex;
   }
 
 .movie-poster{
@@ -31,17 +32,18 @@
 }
 
 .movie-name{
+    color: rgb(32, 32, 32);
+    margin-top: 5px;
+    margin-bottom: 2px;
+    padding-bottom: 2px;
+    padding-top: 2px;
     text-align: center;
-    color:rgb(44, 44, 44);
-    margin-top: 4px;
-    margin-bottom: 0;
-    padding-bottom: 2ex;
-    padding-top: 2ex;
-    text-align: center;
+    font-size: 15px;
+    /* background: rgb(134, 125, 125)34, 125, 125); */
 }
 
 .MovieName-div{
-    background:rgb(240, 240, 240);
+    background:rgb(241, 244, 248);
     margin: 0;
 }
 
@@ -58,8 +60,8 @@
     flex-direction: column;
     gap: 13px;
     /* padding: 10px; */
-    padding-left: 2ex;
-    padding-top: 2ex;
+    padding-left: 3ex;
+    padding-top: 5ex;
     width: 500px;
 }
 
@@ -123,4 +125,24 @@
 .editmovie-cancel-button{
     display:flex;
     justify-content: space-evenly;
+}
+
+.mode-icon{
+    padding-right: 1ex;
+    padding-top: 1ex;
+}
+
+.color-box{
+    padding-top: 5ex;
+    padding-left: 2ex;
+}
+
+.appbar-menus{
+    display: flex;
+    gap: 2.5ex;
+    padding-left: 46ex;
+}
+
+.switch-mode-icon{
+    padding-left: 40ex;
 }

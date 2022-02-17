@@ -2,11 +2,11 @@
 import { useState } from "react";
 
 export function ColorBox() {
-  let [color, setColor] = useState("pink");
+  let [color, setColor] = useState("white");
   let styles = { background: color };
   let [colorList, setColorList] = useState(["black", "green", "turquoise"]);
   return (
-    <div>
+    <div className="color-box">
       <input style={styles} placeholder="Enter color" onChange={(event) => setColor(event.target.value)} />
       <button onClick={(event) => setColorList([...colorList, color])}>Add colors</button>
       {colorList.map((clr) => <AddBox color={clr} />)}

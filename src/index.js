@@ -4,11 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router} from "react-router-dom";
+import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
+
+// const theme = createTheme({
+//   palette: {
+//     mode: 'dark',
+//   },
+// });
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <App />
+     <App /> 
     </Router>
   </React.StrictMode>,
   document.getElementById('root')
