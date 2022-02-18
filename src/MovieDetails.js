@@ -1,11 +1,23 @@
 import { useParams,useHistory } from "react-router-dom";
 import Icon from '@mui/material/IconButton';
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
+import {useState,useEffect}  from "react";
 
-export function MovieDetails({ mlist }) {
+export function MovieDetails() {
+
   let { id } = useParams();
-  let currentMovie = mlist[id];
   let history = useHistory();
+
+   let[currentMovie,setCurrentMovie] = useState([]);
+
+  let refreshMovieList = () => {
+    fetch("https://620e80fd585fbc3359e511d8.mockapi.io/movies/"+id)
+    .then((data) => data.json())
+    .then((mvs) => setCurrentMovie(mvs));
+  }
+
+  useEffect(refreshMovieList, []);
+
 
   let name = currentMovie.name, summary = currentMovie.summary, trailer = currentMovie.trailer;
 

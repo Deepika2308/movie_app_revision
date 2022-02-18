@@ -12,7 +12,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
 
-export function DisplayMovie({name,poster,alt_name,year,rating,summary,trailer,id,deleteButton,editButton}){
+export function DisplayMovie({name,poster,alt_name,year,rating,summary,mid,deleteButton,editButton}){
   
     let styles = {color: rating>7 ? "green" : "red"};
     let [expand,setExpand] = useState(false);
@@ -22,12 +22,12 @@ export function DisplayMovie({name,poster,alt_name,year,rating,summary,trailer,i
     //show or not show summary on toggle
     // let summaryStyle = {display: checked ? "block" : "none"};
     
-    return(
+    return( 
       <Card className="movie-container">
          <img className="movie-poster" src={poster} alt={alt_name}></img>
          <div className ="MovieName-div">
            <h4 className="movie-name">{name} <IconButton color="primary" size="small" aria-label="Details icon">
-               <InfoRoundedIcon onClick={() => history.push("/movies/" +id) }/>
+               <InfoRoundedIcon onClick={() => history.push("/movies/" +mid) }/>
             </IconButton></h4>
          </div>
          <CardContent> 
